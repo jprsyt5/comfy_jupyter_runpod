@@ -68,6 +68,8 @@ RUN git clone https://github.com/kijai/ComfyUI-KJNodes.git /root/ComfyUI/custom_
 RUN mkdir -p /root/ComfyUI/models /root/ComfyUI/output /root/.cache/huggingface
 
 # Copy downloader + entrypoint
+COPY install_tensorrt.sh /root/ComfyUI/install_tensorrt.sh
+RUN chmod +x /root/ComfyUI/install_tensorrt.sh
 COPY comfyjupiter-download.py /root/comfyjupiter-download.py
 COPY entrypoint.sh /root/ComfyUI/entrypoint.sh
 RUN chmod +x /root/ComfyUI/entrypoint.sh
