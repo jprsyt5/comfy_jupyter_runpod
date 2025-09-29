@@ -6,6 +6,7 @@ git -C /root/ComfyUI pull || true
 git -C /root/ComfyUI/custom_nodes/ComfyUI-KJNodes pull || true
 git -C /root/ComfyUI/custom_nodes/ComfyUI-WanVideoWrapper pull || true
 
+bash /root/ComfyUI/install_tensorrt.sh || true
 # Start JupyterLab (no token)
 jupyter lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --LabApp.token='' --LabApp.password='' &
 
