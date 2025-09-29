@@ -1,13 +1,13 @@
-FROM debian:12-slim
+FROM python:3.12-slim
 
 # System deps
 RUN apt-get update && apt-get install -y \
     git ffmpeg libsm6 libxext6 libgl1 libglib2.0-0 \
     build-essential wget gnupg ca-certificates lsb-release \
-    pkg-config cmake libcairo2-dev libpango1.0-dev python3 python3-pip python3-dev && \
+    pkg-config cmake libcairo2-dev libpango1.0-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Install CUDA
+# CUDA 12.4 (same as Modal)
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && \
@@ -16,12 +16,8 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_6
     echo 'export PATH=/usr/local/cuda-12.4/bin:$PATH' >> /etc/profile && \
     echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64:$LD_LIBRARY_PATH' >> /etc/profile
 
-
-# Python base
-RUN apt-get update && apt-get install -y python3-pip && \
-    python3 -m pip install --upgrade pip setuptools wheel && \
-    ln -sf /usr/bin/python3 /usr/bin/python
-
+# Upgrade pip + install essentials
+RUN python -m pip install --upgrade pip setuptools wheel
 # Torch (CUDA 12.9 wheel, works with H100)
 RUN pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu129
 
