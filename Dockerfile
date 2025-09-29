@@ -64,6 +64,7 @@ RUN git clone --depth=1 https://github.com/kijai/ComfyUI-KJNodes.git /root/Comfy
 
 # Create dirs
 RUN mkdir -p /root/ComfyUI/models /root/ComfyUI/output /root/.cache/huggingface
+RUN rm -rf /root/.cache/pip
 
 # Copy downloader + entrypoint
 COPY install_tensorrt.sh /root/ComfyUI/install_tensorrt.sh
