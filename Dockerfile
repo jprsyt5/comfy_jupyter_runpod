@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.131-devel-ubuntu22.04
+FROM debian:12-slim
 
 # System deps
 RUN apt-get update && apt-get install -y \
@@ -6,6 +6,16 @@ RUN apt-get update && apt-get install -y \
     build-essential wget gnupg ca-certificates lsb-release \
     pkg-config cmake libcairo2-dev libpango1.0-dev python3 python3-pip python3-dev && \
     rm -rf /var/lib/apt/lists/*
+
+# Install CUDA
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get install -y cuda-compiler-12-4 cuda-libraries-dev-12-4 && \
+    echo 'export CUDA_HOME=/usr/local/cuda-12.4' >> /etc/profile && \
+    echo 'export PATH=/usr/local/cuda-12.4/bin:$PATH' >> /etc/profile && \
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64:$LD_LIBRARY_PATH' >> /etc/profile
+
 
 # Python base
 RUN python3 -m pip install --upgrade pip && ln -s /usr/bin/python3 /usr/bin/python
