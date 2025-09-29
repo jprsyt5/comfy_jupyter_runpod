@@ -1,7 +1,6 @@
+FROM python:3.12-slim
 ENV PIP_NO_CACHE_DIR=1
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-
-FROM python:3.12-slim
 
 # System deps
 RUN apt-get update && apt-get install -y \
