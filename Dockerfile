@@ -60,7 +60,7 @@ RUN git clone https://github.com/kijai/ComfyUI-KJNodes.git /root/ComfyUI/custom_
     git clone https://github.com/yolain/ComfyUI-Easy-Use.git /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use && \
     cd /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use && pip install -r requirements.txt && \
     git clone -b 1x_upscaler_support https://github.com/jprsyt5/ComfyUI-Upscaler-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && \
-    cd /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && pip install -r requirements.txt && \
+    cd /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && pip install polygraphy requests && \
     git clone https://github.com/yuvraj108c/ComfyUI-Rife-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Rife-Tensorrt && \
     git clone https://github.com/M1kep/Comfy_KepListStuff.git /root/ComfyUI/custom_nodes/Comfy_KepListStuff
 
