@@ -42,27 +42,29 @@ RUN pip install https://huggingface.co/jayn7/SageAttention_wheel/resolve/main/sa
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /root/ComfyUI && \
     cd /root/ComfyUI && pip install -r requirements.txt
 
-# Custom nodes
-RUN git clone https://github.com/kijai/ComfyUI-KJNodes.git /root/ComfyUI/custom_nodes/ComfyUI-KJNodes && \
-    git clone https://github.com/rgthree/rgthree-comfy.git /root/ComfyUI/custom_nodes/rgthree-comfy && \
-    git clone https://github.com/cubiq/ComfyUI_essentials.git /root/ComfyUI/custom_nodes/ComfyUI_essentials && \
-    git clone https://github.com/crystian/ComfyUI-Crystools.git /root/ComfyUI/custom_nodes/ComfyUI-Crystools && \
-    cd /root/ComfyUI/custom_nodes/ComfyUI-Crystools && pip install -r requirements.txt && \
-    git clone https://github.com/ltdrdata/ComfyUI-Manager.git /root/ComfyUI/custom_nodes/ComfyUI-Manager && \
-    git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git /root/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite && \
-    cd /root/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite && pip install -r requirements.txt && \
-    git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git /root/ComfyUI/custom_nodes/ComfyUI-WanVideoWrapper && \
-    git clone https://github.com/Extraltodeus/Skimmed_CFG.git /root/ComfyUI/custom_nodes/Skimmed_CFG && \
-    git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git /root/ComfyUI/custom_nodes/comfyui_controlnet_aux && \
-    git clone https://github.com/o-l-l-i/ComfyUI-Olm-DragCrop.git /root/ComfyUI/custom_nodes/ComfyUI-Olm-DragCrop && \
-    git clone https://github.com/kijai/ComfyUI-segment-anything-2.git /root/ComfyUI/custom_nodes/ComfyUI-segment-anything-2 && \
-    git clone https://github.com/kijai/ComfyUI-WanAnimatePreprocess.git /root/ComfyUI/custom_nodes/ComfyUI-WanAnimatePreprocess && \
-    git clone https://github.com/yolain/ComfyUI-Easy-Use.git /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use && \
-    cd /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use && pip install -r requirements.txt && \
-    git clone -b 1x_upscaler_support https://github.com/jprsyt5/ComfyUI-Upscaler-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && \
-    cd /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && pip install polygraphy requests && \
-    git clone https://github.com/yuvraj108c/ComfyUI-Rife-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Rife-Tensorrt && \
-    git clone https://github.com/M1kep/Comfy_KepListStuff.git /root/ComfyUI/custom_nodes/Comfy_KepListStuff
+# Custom nodes (shallow clone + install requirements)
+RUN git clone --depth=1 https://github.com/kijai/ComfyUI-KJNodes.git /root/ComfyUI/custom_nodes/ComfyUI-KJNodes && \
+    git clone --depth=1 https://github.com/rgthree/rgthree-comfy.git /root/ComfyUI/custom_nodes/rgthree-comfy && \
+    git clone --depth=1 https://github.com/cubiq/ComfyUI_essentials.git /root/ComfyUI/custom_nodes/ComfyUI_essentials && \
+    git clone --depth=1 https://github.com/crystian/ComfyUI-Crystools.git /root/ComfyUI/custom_nodes/ComfyUI-Crystools && \
+    pip install -r /root/ComfyUI/custom_nodes/ComfyUI-Crystools/requirements.txt && \
+    git clone --depth=1 https://github.com/ltdrdata/ComfyUI-Manager.git /root/ComfyUI/custom_nodes/ComfyUI-Manager && \
+    git clone --depth=1 https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git /root/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite && \
+    pip install -r /root/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite/requirements.txt && \
+    git clone --depth=1 https://github.com/kijai/ComfyUI-WanVideoWrapper.git /root/ComfyUI/custom_nodes/ComfyUI-WanVideoWrapper && \
+    git clone --depth=1 https://github.com/Extraltodeus/Skimmed_CFG.git /root/ComfyUI/custom_nodes/Skimmed_CFG && \
+    git clone --depth=1 https://github.com/Fannovel16/comfyui_controlnet_aux.git /root/ComfyUI/custom_nodes/comfyui_controlnet_aux && \
+    git clone --depth=1 https://github.com/o-l-l-i/ComfyUI-Olm-DragCrop.git /root/ComfyUI/custom_nodes/ComfyUI-Olm-DragCrop && \
+    git clone --depth=1 https://github.com/kijai/ComfyUI-segment-anything-2.git /root/ComfyUI/custom_nodes/ComfyUI-segment-anything-2 && \
+    git clone --depth=1 https://github.com/kijai/ComfyUI-WanAnimatePreprocess.git /root/ComfyUI/custom_nodes/ComfyUI-WanAnimatePreprocess && \
+    git clone --depth=1 https://github.com/yolain/ComfyUI-Easy-Use.git /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use && \
+    pip install -r /root/ComfyUI/custom_nodes/ComfyUI-Easy-Use/requirements.txt && \
+    git clone --depth=1 -b 1x_upscaler_support https://github.com/jprsyt5/ComfyUI-Upscaler-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt && \
+    pip install -r /root/ComfyUI/custom_nodes/ComfyUI-Upscaler-Tensorrt/requirements.txt || true && \
+    git clone --depth=1 https://github.com/yuvraj108c/ComfyUI-Rife-Tensorrt.git /root/ComfyUI/custom_nodes/ComfyUI-Rife-Tensorrt && \
+    git clone --depth=1 https://github.com/M1kep/Comfy_KepListStuff.git /root/ComfyUI/custom_nodes/Comfy_KepListStuff && \
+    # cleanup .git folders to save space
+    find /root/ComfyUI/custom_nodes -name ".git" -type d -exec rm -rf {} +
 
 # Create dirs
 RUN mkdir -p /root/ComfyUI/models /root/ComfyUI/output /root/.cache/huggingface
